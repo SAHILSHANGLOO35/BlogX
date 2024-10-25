@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head") %>
+    <title>Blog</title>
+</head>
+<body style="background-color: #212121; color: white; padding: 56px; ">
+    <%- include("./partials/nav") %>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <!-- Blog Post Card -->
+                <div class="card">
+                    <img src="<%= blog.coverImageUrl %>" class="card-img-top" alt="Blog Cover Image">
+                    <div class="card-body">
+                        <h1 class="card-title"><%= blog.title %></h1>
+                        <p class="card-text"><pre><%= blog.body %></pre></p>
+                        <div class="d-flex align-items-center">
+                            <img src="<%= blog.createdBy.profileImageUrl %>" class="rounded-circle me-2" width="50px">
+                            <span><strong><%= blog.createdBy.fullName %></strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="mt-5">
+                    <h3>Comments (<%= comments.length %>)</h3>
+
+                    <!-- Comment Form -->
+                    <% if (locals.user) { %>
+                        <form action="/blog/comment/<%= blog._id %>" method="post" class="mb-4">
+                            <div class="mb-3">
+                                <textarea name="content" class="form-control" rows="3" placeholder="Add your comment"></textarea>
+                            </div>
+                            <button class="btn btn-sm btn-primary">Add Comment</button>
+                        </form>
+                    <% } %>
+
+                    <!-- Display Comments -->
+                    <% comments.forEach(comment => { %>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <img src="<%= comment.createdBy.profileImageUrl %>" class="rounded-circle me-2" width="40px">
+                                    <strong><%= comment.createdBy.fullName %></strong>
+                                </div>
+                                <p class="card-text"><pre><%= comment.content %></pre></p>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("./partials/scripts") %>
+</body>
+</html>

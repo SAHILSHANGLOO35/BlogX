@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head") %>
+    <title>SignUp</title>
+    <style>
+        /* Form container styling */
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        /* Styling the labels */
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 6px;
+        }
+
+        /* Input styling */
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 12px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: none;
+        }
+
+        /* Button styling */
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Typography */
+        h2 {
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        /* Form text style */
+        .form-text {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #212121; padding-top: 56px;">
+    <%- include("./partials/nav") %>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Create Your Account</h2>
+            <form action="/user/signup" method="post">
+                <!-- Full Name -->
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input name="fullName" type="text" class="form-control" id="fullName" aria-describedby="fullName" required>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email Address</label>
+                    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword1" required>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <%- include("./partials/scripts") %>
+</body>
+</html>
