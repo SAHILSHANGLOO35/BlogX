@@ -47,14 +47,22 @@ blogRouter.post("/comment/:blogId", async function(req, res) {
 });
 
 blogRouter.post("/", upload.single("coverImage"), async function(req, res) {
-    const { title, body } = req.body;
-    const blog = await Blog.create({
-        body,
-        title,
-        createdBy: req.user._id,
-        coverImageUrl: `/uploads/${req.file.filename}`,
-    });
-    return res.redirect(`/blog/${blog._id}`);
+    try {
+        const { title, body } = req.body;
+        const coverImageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+
+        const blog = await Blog.create({
+            body,
+            title,
+            createdBy: req.user._id,
+            coverImageUrl
+        });
+
+        return res.redirect(`/blog/${blog._id}`);
+    } catch (error) {
+        console.error("Error creating blog:", error);
+        return res.redirect("/blog/add-new");
+    }
 });
 
 module.exports = blogRouter;
