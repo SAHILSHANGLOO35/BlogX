@@ -9,7 +9,6 @@ const Blog = require("./models/blog");
 const userRouter = require("./routes/user");
 const blogRouter = require("./routes/blog");
 
-
 const { checkForAuthCookie } = require("./middlewares/auth");
 
 const app = express();
@@ -38,5 +37,5 @@ app.use("/user", userRouter);
 app.use("/blog", blogRouter);
 
 app.listen(PORT, () => {
-    console.log(`SERVER STARTED AT PORT: ${PORT}`);
+    console.log(`SERVER STARTED AT PORT:${PORT}`);
 });
