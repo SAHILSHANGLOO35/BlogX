@@ -55,7 +55,7 @@ blogRouter.post("/", upload.single("coverImage"), async function(req, res) {
             body,
             title,
             createdBy: req.user._id,
-            coverImageUrl
+            coverImageUrl: `/uploads/${req.file.filename}`,
         });
 
         return res.redirect(`/blog/${blog._id}`);
